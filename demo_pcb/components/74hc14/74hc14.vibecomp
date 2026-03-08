@@ -1,0 +1,56 @@
+{
+  "component": {
+    "name": "74HC14 Hex Schmitt-Trigger Inverter",
+    "description": "Hex inverting Schmitt-trigger buffer, SOIC-14. Six independent inverters with hysteresis on all inputs.",
+    "category": "ic",
+    "symbol": "74hc14",
+    "footprint": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm",
+    "pins": [
+      { "number": 1,  "name": "1A", "type": "input",    "position": { "dx": -4, "dy":  6 } },
+      { "number": 2,  "name": "1Y", "type": "output",   "position": { "dx":  4, "dy":  6 } },
+      { "number": 3,  "name": "2A", "type": "input",    "position": { "dx": -4, "dy":  4 } },
+      { "number": 4,  "name": "2Y", "type": "output",   "position": { "dx":  4, "dy":  4 } },
+      { "number": 5,  "name": "3A", "type": "input",    "position": { "dx": -4, "dy":  2 } },
+      { "number": 6,  "name": "3Y", "type": "output",   "position": { "dx":  4, "dy":  2 } },
+      { "number": 7,  "name": "GND","type": "power_in", "position": { "dx":  0, "dy": -8 } },
+      { "number": 8,  "name": "4Y", "type": "output",   "position": { "dx":  4, "dy": -2 } },
+      { "number": 9,  "name": "4A", "type": "input",    "position": { "dx": -4, "dy": -2 } },
+      { "number": 10, "name": "5Y", "type": "output",   "position": { "dx":  4, "dy": -4 } },
+      { "number": 11, "name": "5A", "type": "input",    "position": { "dx": -4, "dy": -4 } },
+      { "number": 12, "name": "6Y", "type": "output",   "position": { "dx":  4, "dy": -6 } },
+      { "number": 13, "name": "6A", "type": "input",    "position": { "dx": -4, "dy": -6 } },
+      { "number": 14, "name": "VCC","type": "power_in", "position": { "dx":  0, "dy":  8 } }
+    ],
+    "graphics": [
+      { "type": "rect", "x": -3, "y": -7, "width": 6, "height": 14 },
+
+      { "type": "line", "x1": -4, "y1":  6, "x2": -3, "y2":  6 },
+      { "type": "line", "x1":  3, "y1":  6, "x2":  4, "y2":  6 },
+      { "type": "line", "x1": -4, "y1":  4, "x2": -3, "y2":  4 },
+      { "type": "line", "x1":  3, "y1":  4, "x2":  4, "y2":  4 },
+      { "type": "line", "x1": -4, "y1":  2, "x2": -3, "y2":  2 },
+      { "type": "line", "x1":  3, "y1":  2, "x2":  4, "y2":  2 },
+
+      { "type": "line", "x1": -4, "y1": -2, "x2": -3, "y2": -2 },
+      { "type": "line", "x1":  3, "y1": -2, "x2":  4, "y2": -2 },
+      { "type": "line", "x1": -4, "y1": -4, "x2": -3, "y2": -4 },
+      { "type": "line", "x1":  3, "y1": -4, "x2":  4, "y2": -4 },
+      { "type": "line", "x1": -4, "y1": -6, "x2": -3, "y2": -6 },
+      { "type": "line", "x1":  3, "y1": -6, "x2":  4, "y2": -6 },
+
+      { "type": "line", "x1":  0, "y1":  7, "x2":  0, "y2":  8 },
+      { "type": "line", "x1":  0, "y1": -7, "x2":  0, "y2": -8 }
+    ],
+    "properties": {
+      "value":   { "value": "74HC14", "display": "shown" },
+      "package": { "value": "SOIC-14", "display": "shown" },
+      "supply_voltage_min_V": { "value": 2.0,  "display": "hidden" },
+      "supply_voltage_max_V": { "value": 6.0,  "display": "hidden" },
+      "VT_hi_typ_V":          { "value": 1.6,  "display": "hidden" },
+      "VT_lo_typ_V":          { "value": 0.9,  "display": "hidden" },
+      "hysteresis_typ_V":     { "value": 0.7,  "display": "hidden" },
+      "output_current_max_A": { "value": 0.025,"display": "hidden" },
+      "datasheet": { "value": "https://www.ti.com/lit/ds/symlink/sn74hc14.pdf", "display": "hidden" }
+    }
+  }
+}

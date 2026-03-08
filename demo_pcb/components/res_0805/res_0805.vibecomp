@@ -1,0 +1,70 @@
+{
+  "component": {
+    "name": "Resistor 0805",
+    "description": "Generic SMD resistor, 0805 package",
+    "category": "resistor",
+    "symbol": "resistor",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "pins": [
+      {
+        "number": 1,
+        "name": "~",
+        "type": "passive",
+        "position": {
+          "dx": 0,
+          "dy": -2
+        }
+      },
+      {
+        "number": 2,
+        "name": "~",
+        "type": "passive",
+        "position": {
+          "dx": 0,
+          "dy": 2
+        }
+      }
+    ],
+    "graphics": [
+      {
+        "type": "line",
+        "x1": 0,
+        "y1": -2,
+        "x2": 0,
+        "y2": -1
+      },
+      {
+        "type": "rect",
+        "x": -0.75,
+        "y": -1,
+        "width": 1.5,
+        "height": 2
+      },
+      {
+        "type": "line",
+        "x1": 0,
+        "y1": 1,
+        "x2": 0,
+        "y2": 2
+      }
+    ],
+    "properties": {
+      "value": {
+        "value": null,
+        "display": "shown"
+      },
+      "package": {
+        "value": "0805",
+        "display": "shown"
+      },
+      "power_rating_W": {
+        "value": 0.125,
+        "display": "hidden"
+      },
+      "tolerance_pct": {
+        "value": 1,
+        "display": "hidden"
+      }
+    }
+  }
+}

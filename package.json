@@ -1,0 +1,43 @@
+{
+  "name": "vibepcb",
+  "displayName": "VibePCB Schematic Editor",
+  "description": "Text-driven PCB schematic editor",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "vibepcb.schematicEditor",
+        "displayName": "Schematic Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.vibesch"
+          }
+        ],
+        "priority": "default"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "mcp": "node ./out/mcp/server.js"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/sharp": "^0.31.1",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "sharp": "^0.34.5"
+  }
+}

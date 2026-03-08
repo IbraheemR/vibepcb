@@ -1,0 +1,47 @@
+{
+  "component": {
+    "name": "NTC Thermistor 10k",
+    "description": "NTC thermistor 10kOhm at 25C, for heatsink temperature monitoring",
+    "category": "resistor",
+    "symbol": "thermistor_ntc",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "pins": [
+      {
+        "number": 1,
+        "name": "~",
+        "type": "passive",
+        "position": { "dx": 0, "dy": -2 }
+      },
+      {
+        "number": 2,
+        "name": "~",
+        "type": "passive",
+        "position": { "dx": 0, "dy": 2 }
+      }
+    ],
+    "graphics": [
+      { "type": "line", "x1": 0, "y1": -2, "x2": 0, "y2": -1 },
+      { "type": "rect", "x": -0.75, "y": -1, "width": 1.5, "height": 2 },
+      { "type": "line", "x1": 0, "y1": 1, "x2": 0, "y2": 2 },
+      { "type": "line", "x1": -1, "y1": 1.2, "x2": 1, "y2": -1.2 }
+    ],
+    "properties": {
+      "value": {
+        "value": "10k NTC",
+        "display": "shown"
+      },
+      "package": {
+        "value": "0805",
+        "display": "shown"
+      },
+      "resistance_25C_Ohm": {
+        "value": 10000,
+        "display": "hidden"
+      },
+      "B_value_K": {
+        "value": 3435,
+        "display": "hidden"
+      }
+    }
+  }
+}

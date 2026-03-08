@@ -1,0 +1,174 @@
+{
+  "component": {
+    "name": "NE555 Timer",
+    "description": "General-purpose single bipolar timer IC, DIP-8 / SOIC-8",
+    "category": "ic",
+    "symbol": "ne555",
+    "footprint": "Package_DIP:DIP-8_W7.62mm",
+    "pins": [
+      {
+        "number": 1,
+        "name": "GND",
+        "type": "power_in",
+        "position": {
+          "dx": -4,
+          "dy": 3
+        }
+      },
+      {
+        "number": 2,
+        "name": "TRIG",
+        "type": "input",
+        "position": {
+          "dx": -4,
+          "dy": 1
+        }
+      },
+      {
+        "number": 3,
+        "name": "OUT",
+        "type": "output",
+        "position": {
+          "dx": 4,
+          "dy": 1
+        }
+      },
+      {
+        "number": 4,
+        "name": "RESET",
+        "type": "input",
+        "position": {
+          "dx": -4,
+          "dy": -1
+        }
+      },
+      {
+        "number": 5,
+        "name": "CTRL",
+        "type": "input",
+        "position": {
+          "dx": 4,
+          "dy": -1
+        }
+      },
+      {
+        "number": 6,
+        "name": "THR",
+        "type": "input",
+        "position": {
+          "dx": -4,
+          "dy": -3
+        }
+      },
+      {
+        "number": 7,
+        "name": "DIS",
+        "type": "open_collector",
+        "position": {
+          "dx": 4,
+          "dy": -3
+        }
+      },
+      {
+        "number": 8,
+        "name": "VCC",
+        "type": "power_in",
+        "position": {
+          "dx": 4,
+          "dy": 3
+        }
+      }
+    ],
+    "graphics": [
+      {
+        "type": "rect",
+        "x": -3,
+        "y": -4,
+        "width": 6,
+        "height": 8
+      },
+      {
+        "type": "line",
+        "x1": -4,
+        "y1": 3,
+        "x2": -3,
+        "y2": 3
+      },
+      {
+        "type": "line",
+        "x1": -4,
+        "y1": 1,
+        "x2": -3,
+        "y2": 1
+      },
+      {
+        "type": "line",
+        "x1": 3,
+        "y1": 1,
+        "x2": 4,
+        "y2": 1
+      },
+      {
+        "type": "line",
+        "x1": -4,
+        "y1": -1,
+        "x2": -3,
+        "y2": -1
+      },
+      {
+        "type": "line",
+        "x1": 3,
+        "y1": -1,
+        "x2": 4,
+        "y2": -1
+      },
+      {
+        "type": "line",
+        "x1": -4,
+        "y1": -3,
+        "x2": -3,
+        "y2": -3
+      },
+      {
+        "type": "line",
+        "x1": 3,
+        "y1": -3,
+        "x2": 4,
+        "y2": -3
+      },
+      {
+        "type": "line",
+        "x1": 3,
+        "y1": 3,
+        "x2": 4,
+        "y2": 3
+      }
+    ],
+    "properties": {
+      "value": {
+        "value": "NE555",
+        "display": "shown"
+      },
+      "package": {
+        "value": "DIP-8",
+        "display": "shown"
+      },
+      "supply_voltage_min_V": {
+        "value": 4.5,
+        "display": "hidden"
+      },
+      "supply_voltage_max_V": {
+        "value": 16,
+        "display": "hidden"
+      },
+      "output_current_max_A": {
+        "value": 0.2,
+        "display": "hidden"
+      },
+      "datasheet": {
+        "value": "https://www.ti.com/lit/ds/symlink/ne555.pdf",
+        "display": "hidden"
+      }
+    }
+  }
+}

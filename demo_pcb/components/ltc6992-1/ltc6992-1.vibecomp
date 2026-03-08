@@ -1,0 +1,174 @@
+{
+  "component": {
+    "name": "LTC6992-1",
+    "description": "TimerBlox Voltage-Controlled PWM oscillator, 0%-100% duty cycle, SOT-23-6 (S6 package)",
+    "category": "ic",
+    "symbol": "ltc6992-1",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+    "pins": [
+      {
+        "number": 1,
+        "name": "MOD",
+        "type": "input",
+        "position": {
+          "dx": -4,
+          "dy": 2
+        }
+      },
+      {
+        "number": 2,
+        "name": "GND",
+        "type": "power_in",
+        "position": {
+          "dx": -4,
+          "dy": 0
+        }
+      },
+      {
+        "number": 3,
+        "name": "SET",
+        "type": "input",
+        "position": {
+          "dx": -4,
+          "dy": -2
+        }
+      },
+      {
+        "number": 4,
+        "name": "DIV",
+        "type": "input",
+        "position": {
+          "dx": 4,
+          "dy": -2
+        }
+      },
+      {
+        "number": 5,
+        "name": "V+",
+        "type": "power_in",
+        "position": {
+          "dx": 4,
+          "dy": 0
+        }
+      },
+      {
+        "number": 6,
+        "name": "OUT",
+        "type": "output",
+        "position": {
+          "dx": 4,
+          "dy": 2
+        }
+      }
+    ],
+    "graphics": [
+      {
+        "type": "rect",
+        "x": -3,
+        "y": -3,
+        "width": 6,
+        "height": 6
+      },
+      {
+        "type": "line",
+        "x1": -4,
+        "y1": 2,
+        "x2": -3,
+        "y2": 2
+      },
+      {
+        "type": "line",
+        "x1": -4,
+        "y1": 0,
+        "x2": -3,
+        "y2": 0
+      },
+      {
+        "type": "line",
+        "x1": -4,
+        "y1": -2,
+        "x2": -3,
+        "y2": -2
+      },
+      {
+        "type": "line",
+        "x1": 3,
+        "y1": -2,
+        "x2": 4,
+        "y2": -2
+      },
+      {
+        "type": "line",
+        "x1": 3,
+        "y1": 0,
+        "x2": 4,
+        "y2": 0
+      },
+      {
+        "type": "line",
+        "x1": 3,
+        "y1": 2,
+        "x2": 4,
+        "y2": 2
+      }
+    ],
+    "properties": {
+      "value": {
+        "value": "LTC6992-1",
+        "display": "shown"
+      },
+      "package": {
+        "value": "SOT-23-6",
+        "display": "shown"
+      },
+      "supply_voltage_min_V": {
+        "value": 2.25,
+        "display": "hidden"
+      },
+      "supply_voltage_max_V": {
+        "value": 5.5,
+        "display": "hidden"
+      },
+      "frequency_min_Hz": {
+        "value": 3.81,
+        "display": "hidden"
+      },
+      "frequency_max_Hz": {
+        "value": 1000000,
+        "display": "hidden"
+      },
+      "rset_min_ohm": {
+        "value": 50000,
+        "display": "hidden"
+      },
+      "rset_max_ohm": {
+        "value": 800000,
+        "display": "hidden"
+      },
+      "output_current_max_A": {
+        "value": 0.02,
+        "display": "hidden"
+      },
+      "supply_current_typ_uA": {
+        "value": 115,
+        "display": "hidden"
+      },
+      "duty_cycle_min_pct": {
+        "value": 0,
+        "display": "hidden"
+      },
+      "duty_cycle_max_pct": {
+        "value": 100,
+        "display": "hidden"
+      },
+      "vset_typ_V": {
+        "value": 1.0,
+        "display": "hidden"
+      },
+      "datasheet": {
+        "value": "LTC6992-1-6992-2-6992-3-6992-4.pdf",
+        "display": "hidden"
+      }
+    }
+  }
+}

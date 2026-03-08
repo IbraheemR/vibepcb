@@ -1,0 +1,105 @@
+{
+  "component": {
+    "name": "Red LED",
+    "description": "Standard SMD red LED",
+    "category": "led",
+    "symbol": "led",
+    "footprint": "LED_SMD:LED_0805_2012Metric",
+    "pins": [
+      {
+        "number": 1,
+        "name": "A",
+        "type": "passive",
+        "position": {
+          "dx": 0,
+          "dy": -2
+        }
+      },
+      {
+        "number": 2,
+        "name": "K",
+        "type": "passive",
+        "position": {
+          "dx": 0,
+          "dy": 2
+        }
+      }
+    ],
+    "graphics": [
+      {
+        "type": "line",
+        "x1": 0,
+        "y1": -2,
+        "x2": 0,
+        "y2": -1
+      },
+      {
+        "type": "polygon",
+        "points": [
+          [
+            -0.75,
+            -1
+          ],
+          [
+            0.75,
+            -1
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "type": "line",
+        "x1": -0.75,
+        "y1": 1,
+        "x2": 0.75,
+        "y2": 1
+      },
+      {
+        "type": "line",
+        "x1": 0,
+        "y1": 1,
+        "x2": 0,
+        "y2": 2
+      },
+      {
+        "type": "arrow",
+        "x1": 0.55,
+        "y1": -0.1,
+        "x2": 0.9,
+        "y2": -0.45
+      },
+      {
+        "type": "arrow",
+        "x1": 0.9,
+        "y1": -0.1,
+        "x2": 1.25,
+        "y2": -0.45
+      }
+    ],
+    "properties": {
+      "color": {
+        "value": "red",
+        "display": "shown"
+      },
+      "wavelength_nm": {
+        "value": 625,
+        "display": "hidden"
+      },
+      "forward_voltage_typ_V": {
+        "value": 2,
+        "display": "shown"
+      },
+      "forward_voltage_max_V": {
+        "value": 2.4,
+        "display": "hidden"
+      },
+      "forward_current_max_A": {
+        "value": 0.02,
+        "display": "hidden"
+      }
+    }
+  }
+}

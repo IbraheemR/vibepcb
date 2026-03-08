@@ -1,0 +1,107 @@
+{
+  "schematic": {
+    "template": "../../templates/a4.vibeschtemplate",
+
+    "titleblock": {
+      "name": "NE555 1Hz LED Flasher",
+      "description": "NE555 astable oscillator at ~1Hz driving a red LED through a current-limiting resistor",
+      "version": "0.2.0",
+      "author": "",
+      "company": ""
+    },
+
+    "imports": [
+      { "path": "../components/red_led/red_led.vibecomp",   "as": "RED_LED"  },
+      { "path": "../components/res_0805/res_0805.vibecomp", "as": "RES_0805" },
+      { "path": "../components/cap_0805/cap_0805.vibecomp", "as": "CAP_0805" },
+      { "path": "../components/ne555/ne555.vibecomp",       "as": "NE555"    }
+    ],
+
+    "components": [
+      {
+        "ref": "U1",
+        "extends": "NE555",
+        "position": { "x": 0, "y": 0 },
+        "comment": "1Hz astable oscillator"
+      },
+      {
+        "ref": "R2",
+        "extends": "RES_0805",
+        "position": { "x": -20, "y": 14 },
+        "comment": "Ra timing resistor",
+        "overrides": {
+          "properties": {
+            "value": "4.7k"
+          }
+        }
+      },
+      {
+        "ref": "R3",
+        "extends": "RES_0805",
+        "position": { "x": -20, "y": 4 },
+        "comment": "Rb timing resistor",
+        "overrides": {
+          "properties": {
+            "value": "68k"
+          }
+        }
+      },
+      {
+        "ref": "C1",
+        "extends": "CAP_0805",
+        "position": { "x": -20, "y": -8 },
+        "comment": "Timing capacitor",
+        "overrides": {
+          "properties": {
+            "value": "10u",
+            "voltage_max_V": 25
+          }
+        }
+      },
+      {
+        "ref": "C2",
+        "extends": "CAP_0805",
+        "position": { "x": 14, "y": -8 },
+        "comment": "CTRL pin bypass",
+        "overrides": {
+          "properties": {
+            "value": "10n",
+            "voltage_max_V": 25
+          }
+        }
+      },
+      {
+        "ref": "R1",
+        "extends": "RES_0805",
+        "position": { "x": 20, "y": 8 },
+        "comment": "LED current limiter",
+        "overrides": {
+          "properties": {
+            "value": "200R"
+          }
+        }
+      },
+      {
+        "ref": "D1",
+        "extends": "RED_LED",
+        "position": { "x": 20, "y": -4 },
+        "comment": "Status LED",
+        "overrides": {
+          "properties": {
+            "forward_voltage_typ_V": 2.1
+          }
+        }
+      }
+    ],
+
+    "nets": [
+      { "name": "VCC",         "pins": ["U1.8", "U1.4", "R2.1"], "style": "rail" },
+      { "name": "node_dis",    "pins": ["U1.7", "R2.2", "R3.1"] },
+      { "name": "node_timing", "pins": ["U1.2", "U1.6", "R3.2", "C1.1"] },
+      { "name": "node_ctrl",   "pins": ["U1.5", "C2.1"] },
+      { "name": "node_out",    "pins": ["U1.3", "R1.1"] },
+      { "name": "node_A",      "pins": ["R1.2", "D1.A"] },
+      { "name": "GND",         "pins": ["U1.1", "C1.2", "C2.2", "D1.K"], "style": "gnd" }
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "component": {
+    "name": "IGBT 1200V/75A with Diode",
+    "description": "Infineon IKW75N120CH3 TrenchStop IGBT3 with integrated anti-parallel diode, TO-247-3",
+    "category": "transistor",
+    "symbol": "igbt_with_diode",
+    "footprint": "Package_TO_SOT_THT:TO-247-3_Vertical",
+    "pins": [
+      {
+        "number": 1,
+        "name": "G",
+        "type": "input",
+        "position": { "dx": -4, "dy": 0 }
+      },
+      {
+        "number": 2,
+        "name": "C",
+        "type": "passive",
+        "position": { "dx": 0, "dy": 4 }
+      },
+      {
+        "number": 3,
+        "name": "E",
+        "type": "passive",
+        "position": { "dx": 0, "dy": -4 }
+      }
+    ],
+    "graphics": [
+      { "type": "line", "x1": -4, "y1": 0, "x2": -2, "y2": 0 },
+      { "type": "line", "x1": -2, "y1": -1.5, "x2": -2, "y2": 1.5 },
+
+      { "type": "line", "x1": -1, "y1": -1.5, "x2": -1, "y2": 1.5 },
+
+      { "type": "line", "x1": -1, "y1": 1, "x2": 0, "y2": 1 },
+      { "type": "line", "x1": 0, "y1": 1, "x2": 0, "y2": 4 },
+      { "type": "line", "x1": -1, "y1": -1, "x2": 0, "y2": -1 },
+      { "type": "line", "x1": 0, "y1": -1, "x2": 0, "y2": -4 },
+
+      { "type": "arrow", "x1": -1, "y1": 0, "x2": 0, "y2": 0 },
+
+      { "type": "line", "x1": 0, "y1": 0, "x2": 0, "y2": 1 },
+
+      { "type": "line", "x1": 1, "y1": 1.5, "x2": 1, "y2": -1.5 },
+      { "type": "polygon", "points": [[1, -0.5], [1, 0.5], [2, 0]] },
+      { "type": "line", "x1": 2, "y1": 1.5, "x2": 2, "y2": -1.5 },
+
+      { "type": "line", "x1": 1, "y1": 1.5, "x2": 2, "y2": 1.5 },
+      { "type": "line", "x1": 1, "y1": -1.5, "x2": 2, "y2": -1.5 },
+      { "type": "line", "x1": 1.5, "y1": 1.5, "x2": 0, "y2": 1.5 },
+      { "type": "line", "x1": 0, "y1": 1.5, "x2": 0, "y2": 1 },
+      { "type": "line", "x1": 1.5, "y1": -1.5, "x2": 0, "y2": -1.5 },
+      { "type": "line", "x1": 0, "y1": -1.5, "x2": 0, "y2": -1 }
+    ],
+    "properties": {
+      "value": {
+        "value": "IKW75N120CH3",
+        "display": "shown"
+      },
+      "package": {
+        "value": "TO-247-3",
+        "display": "shown"
+      },
+      "V_ces_max_V": {
+        "value": 1200,
+        "display": "hidden"
+      },
+      "I_c_nom_A": {
+        "value": 75,
+        "display": "hidden"
+      },
+      "V_ce_sat_typ_V": {
+        "value": 1.65,
+        "display": "hidden"
+      },
+      "datasheet": {
+        "value": "https://www.infineon.com/dgdl/Infineon-IKW75N120CH3-DataSheet-v02_01-EN.pdf",
+        "display": "hidden"
+      }
+    }
+  }
+}

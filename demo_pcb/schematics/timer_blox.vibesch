@@ -1,0 +1,123 @@
+{
+  "schematic": {
+    "template": "../../templates/a4.vibeschtemplate",
+
+    "titleblock": {
+      "name": "TimerBlox PWM LED Dimmer",
+      "description": "LTC6992-1 PWM oscillator at ~1kHz driving a red LED at ~50% duty cycle via analog MOD voltage",
+      "version": "0.1.0",
+      "author": "",
+      "company": ""
+    },
+
+    "imports": [
+      { "path": "../components/ltc6992-1/ltc6992-1.vibecomp", "as": "LTC6992_1" },
+      { "path": "../components/res_0805/res_0805.vibecomp",   "as": "RES_0805"  },
+      { "path": "../components/cap_0805/cap_0805.vibecomp",   "as": "CAP_0805"  },
+      { "path": "../components/red_led/red_led.vibecomp",     "as": "RED_LED"   }
+    ],
+
+    "components": [
+      {
+        "ref": "U1",
+        "extends": "LTC6992_1",
+        "position": { "x": 0, "y": 0 },
+        "comment": "PWM oscillator, ~1kHz at 50% duty cycle"
+      },
+      {
+        "ref": "R1",
+        "extends": "RES_0805",
+        "position": { "x": -22, "y": -12 },
+        "comment": "RSET: sets master oscillator frequency (f_MASTER = 1MHz × 50k/RSET)",
+        "overrides": {
+          "properties": {
+            "value": "200k"
+          }
+        }
+      },
+      {
+        "ref": "R4",
+        "extends": "RES_0805",
+        "position": { "x": -22, "y": 2 },
+        "comment": "MOD upper: resistor divider top sets duty cycle (VMOD = 0.5V → 50% DC)",
+        "overrides": {
+          "properties": {
+            "value": "56k"
+          }
+        }
+      },
+      {
+        "ref": "R5",
+        "extends": "RES_0805",
+        "position": { "x": -22, "y": 14 },
+        "comment": "MOD lower: resistor divider bottom (VMOD = 0.5V for 50% duty cycle)",
+        "overrides": {
+          "properties": {
+            "value": "10k"
+          }
+        }
+      },
+      {
+        "ref": "R2",
+        "extends": "RES_0805",
+        "position": { "x": 20, "y": -10 },
+        "comment": "DIV upper: resistor divider top for DIV pin (NDIV=256, DIVCODE=8)",
+        "overrides": {
+          "properties": {
+            "value": "470k"
+          }
+        }
+      },
+      {
+        "ref": "R3",
+        "extends": "RES_0805",
+        "position": { "x": 20, "y": 2 },
+        "comment": "DIV lower: resistor divider bottom for DIV pin (NDIV=256, DIVCODE=8)",
+        "overrides": {
+          "properties": {
+            "value": "560k"
+          }
+        }
+      },
+      {
+        "ref": "C1",
+        "extends": "CAP_0805",
+        "position": { "x": 32, "y": -10 },
+        "comment": "V+ supply bypass",
+        "overrides": {
+          "properties": {
+            "value": "100n",
+            "voltage_max_V": 10
+          }
+        }
+      },
+      {
+        "ref": "R6",
+        "extends": "RES_0805",
+        "position": { "x": 32, "y": 2 },
+        "comment": "LED current limiter (~8.7mA at 3.3V with Vf=2.0V)",
+        "overrides": {
+          "properties": {
+            "value": "150R"
+          }
+        }
+      },
+      {
+        "ref": "D1",
+        "extends": "RED_LED",
+        "position": { "x": 32, "y": 14 },
+        "comment": "Status LED driven by PWM output"
+      }
+    ],
+
+    "nets": [
+      { "name": "VCC",      "pins": ["U1.5", "C1.1", "R2.1", "R4.1"], "style": "rail" },
+      { "name": "node_set", "pins": ["U1.3", "R1.1"] },
+      { "name": "node_div", "pins": ["U1.4", "R2.2", "R3.1"] },
+      { "name": "node_mod", "pins": ["U1.1", "R4.2", "R5.1"] },
+      { "name": "node_out", "pins": ["U1.6", "R6.1"] },
+      { "name": "node_A",   "pins": ["R6.2", "D1.A"] },
+      { "name": "GND",      "pins": ["U1.2", "R1.2", "R3.2", "R5.2", "C1.2", "D1.K"], "style": "gnd" }
+    ]
+  }
+}

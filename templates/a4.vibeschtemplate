@@ -1,0 +1,98 @@
+{
+  "template": {
+    "name": "A4 Landscape",
+    "description": "Standard A4 landscape schematic sheet with border and bottom-right title block",
+
+    "paper": {
+      "format": "A4",
+      "orientation": "landscape",
+      "width_mm": 297,
+      "height_mm": 210
+    },
+
+    "border": {
+      "margin_mm": 5,
+      "line_weight_mm": 0.5
+    },
+
+    "titleblock": {
+      "position_mm": { "x": 162, "y": 175 },
+      "width_mm": 130,
+      "height_mm": 30,
+      "line_weight_mm": 0.3,
+
+      "rows": [
+        {
+          "height_mm": 10,
+          "cells": [
+            {
+              "id": "title",
+              "label": "TITLE",
+              "source": "schematic.titleblock.name",
+              "width_mm": 130,
+              "font_size_mm": 4.0,
+              "font_weight": "bold"
+            }
+          ]
+        },
+        {
+          "height_mm": 8,
+          "cells": [
+            {
+              "id": "description",
+              "label": "DESC",
+              "source": "schematic.titleblock.description",
+              "width_mm": 130,
+              "font_size_mm": 2.5
+            }
+          ]
+        },
+        {
+          "height_mm": 6,
+          "cells": [
+            {
+              "id": "author",
+              "label": "AUTHOR",
+              "source": "schematic.titleblock.author",
+              "width_mm": 50,
+              "font_size_mm": 2.5
+            },
+            {
+              "id": "version",
+              "label": "REV",
+              "source": "schematic.titleblock.version",
+              "width_mm": 22,
+              "font_size_mm": 2.5
+            },
+            {
+              "id": "date",
+              "label": "DATE",
+              "source": "auto.date",
+              "width_mm": 30,
+              "font_size_mm": 2.5
+            },
+            {
+              "id": "sheet",
+              "label": "SHEET",
+              "source": "auto.sheet_number",
+              "width_mm": 28,
+              "font_size_mm": 2.5
+            }
+          ]
+        },
+        {
+          "height_mm": 6,
+          "cells": [
+            {
+              "id": "company",
+              "label": "COMPANY",
+              "source": "schematic.titleblock.company",
+              "width_mm": 130,
+              "font_size_mm": 2.5
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
