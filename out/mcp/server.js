@@ -90,7 +90,7 @@ server.setRequestHandler(types_js_1.CallToolRequestSchema, async (request) => {
         const template = schematic ? (0, loader_1.readTemplate)(schematic, schematicDir) : null;
         const result = (0, renderer_1.renderSchematic)({ schematic, componentDefs, template });
         const svgContent = (0, renderer_1.buildSvgDocument)(result, template);
-        const pngBuffer = await (0, sharp_1.default)(Buffer.from(svgContent, 'utf8')).png().toBuffer();
+        const pngBuffer = await (0, sharp_1.default)(Buffer.from(svgContent, 'utf8'), { density: 300 }).png().toBuffer();
         const outPath = path.join(os.tmpdir(), `schematic_${Date.now()}.png`);
         fs.writeFileSync(outPath, pngBuffer);
         return {

@@ -69,7 +69,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const result     = renderSchematic({ schematic, componentDefs, template });
     const svgContent = buildSvgDocument(result, template);
 
-    const pngBuffer = await sharp(Buffer.from(svgContent, 'utf8')).png().toBuffer();
+    const pngBuffer = await sharp(Buffer.from(svgContent, 'utf8'), { density: 300 }).png().toBuffer();
 
     const outPath = path.join(os.tmpdir(), `schematic_${Date.now()}.png`);
     fs.writeFileSync(outPath, pngBuffer);

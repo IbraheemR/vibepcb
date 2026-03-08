@@ -1,6 +1,6 @@
 {
   "schematic": {
-    "template": "../../templates/a4.vibeschtemplate",
+    "template": "../templates/a4.vibeschtemplate",
 
     "titleblock": {
       "name": "74HC14 Schmitt 1Hz LED Flasher",

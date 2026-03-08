@@ -1,6 +1,6 @@
 {
   "schematic": {
-    "template": "../../templates/a4.vibeschtemplate",
+    "template": "../templates/a4.vibeschtemplate",
 
     "titleblock": {
       "name": "NE555 1Hz LED Flasher",

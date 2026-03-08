@@ -1,6 +1,6 @@
 {
   "schematic": {
-    "template": "../../templates/a4.vibeschtemplate",
+    "template": "../templates/a4.vibeschtemplate",
 
     "titleblock": {
       "name": "SN74LVC2G14 Schmitt 1Hz LED Flasher",
