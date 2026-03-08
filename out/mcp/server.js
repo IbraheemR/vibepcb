@@ -45,6 +45,7 @@ const types_js_1 = require("@modelcontextprotocol/sdk/types.js");
 const sharp_1 = __importDefault(require("sharp"));
 const loader_1 = require("../loader");
 const renderer_1 = require("../render/renderer");
+const pcbRender_1 = require("../pcbRender");
 const server = new index_js_1.Server({ name: 'vibepcb', version: '0.0.1' }, { capabilities: { tools: {} } });
 server.setRequestHandler(types_js_1.ListToolsRequestSchema, async () => ({
     tools: [
@@ -64,12 +65,26 @@ server.setRequestHandler(types_js_1.ListToolsRequestSchema, async () => ({
                 required: ['filePath'],
             },
         },
+        {
+            name: 'vibepcb_export_pcb',
+            description: 'Exports a VibePCB PCB layout (.vibepcb) as a PNG image. ' +
+                'Renders directly from disk — no editor window required. ' +
+                'Returns the path to the exported PNG.',
+            inputSchema: {
+                type: 'object',
+                properties: {
+                    filePath: {
+                        type: 'string',
+                        description: 'Absolute path to the .vibepcb file to export.',
+                    },
+                },
+                required: ['filePath'],
+            },
+        },
     ],
 }));
 server.setRequestHandler(types_js_1.CallToolRequestSchema, async (request) => {
-    if (request.params.name !== 'vibepcb_export_schematic') {
-        throw new types_js_1.McpError(types_js_1.ErrorCode.MethodNotFound, `Unknown tool: ${request.params.name}`);
-    }
+    const { name } = request.params;
     const args = request.params.arguments;
     const filePath = args?.filePath;
     if (!filePath) {
@@ -79,6 +94,15 @@ server.setRequestHandler(types_js_1.CallToolRequestSchema, async (request) => {
     if (!fs.existsSync(absPath)) {
         return { content: [{ type: 'text', text: `File not found: ${absPath}` }] };
     }
+    if (name === 'vibepcb_export_schematic') {
+        return exportSchematic(absPath);
+    }
+    else if (name === 'vibepcb_export_pcb') {
+        return exportPcb(absPath);
+    }
+    throw new types_js_1.McpError(types_js_1.ErrorCode.MethodNotFound, `Unknown tool: ${name}`);
+});
+async function exportSchematic(absPath) {
     try {
         let schematic = null;
         try {
@@ -100,7 +124,30 @@ server.setRequestHandler(types_js_1.CallToolRequestSchema, async (request) => {
     catch (err) {
         return { content: [{ type: 'text', text: `Export failed: ${String(err)}` }] };
     }
-});
+}
+async function exportPcb(absPath) {
+    try {
+        let pcb = null;
+        try {
+            pcb = JSON.parse(fs.readFileSync(absPath, 'utf8'));
+        }
+        catch { /* ignore */ }
+        if (!pcb) {
+            return { content: [{ type: 'text', text: `Failed to parse PCB file: ${absPath}` }] };
+        }
+        const pcbDir = path.dirname(absPath);
+        const svgContent = (0, pcbRender_1.buildPcbSvg)(pcb, pcbDir);
+        const pngBuffer = await (0, sharp_1.default)(Buffer.from(svgContent, 'utf8'), { density: 300 }).png().toBuffer();
+        const outPath = path.join(os.tmpdir(), `pcb_${Date.now()}.png`);
+        fs.writeFileSync(outPath, pngBuffer);
+        return {
+            content: [{ type: 'text', text: `PCB exported as PNG: ${outPath}\nSource: ${absPath}` }],
+        };
+    }
+    catch (err) {
+        return { content: [{ type: 'text', text: `Export failed: ${String(err)}` }] };
+    }
+}
 async function main() {
     const transport = new stdio_js_1.StdioServerTransport();
     await server.connect(transport);

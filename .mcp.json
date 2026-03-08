@@ -2,7 +2,7 @@
   "mcpServers": {
     "vibepcb": {
       "command": "node",
-      "args": ["C:/Users/ibraheem/Desktop/ai_test/out/mcp/server.js"]
+      "args": ["../out/mcp/server.js"]
     }
   }
 }

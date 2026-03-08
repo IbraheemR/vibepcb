@@ -22,6 +22,16 @@
           }
         ],
         "priority": "default"
+      },
+      {
+        "viewType": "vibepcb.pcbEditor",
+        "displayName": "PCB Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.vibepcb"
+          }
+        ],
+        "priority": "default"
       }
     ]
   },

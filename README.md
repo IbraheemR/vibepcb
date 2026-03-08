@@ -19,10 +19,21 @@ Info below all vibe-documented - but hopefully it explains it.
 | Extension | Purpose |
 |---|---|
 | `.vibesch` | Schematic — component placement and net connections |
-| `.vibecomp` | Component definition — symbol graphics, pins, and properties |
+| `.vibecomp` | Component definition — symbol graphics, pins, properties, and footprint |
 | `.vibeschtemplate` | Page template — paper size, border, title block |
+| `.vibepcb` | PCB layout — board outline, component placement, and routing |
 
-All schematic/component coordinates use a 100 mil grid (1 unit = 2.54 mm). Templates use millimetres.
+All schematic/component coordinates use a 100 mil grid (1 unit = 2.54 mm). Templates and PCB layouts use millimetres.
+
+### `.vibepcb` — PCB layout
+
+PCB files reference a schematic and define the physical board layout. Key constraints:
+
+- **Single layer only** — jumps are made with a wirebonding machine, no vias
+- **Rectangular boards** — defined by `width_mm` and `height_mm`, origin at bottom-left corner
+- **Footprints live in `.vibecomp` files** — placements only need `ref`, `position`, and `rotation`
+- **Routing primitives** — `trace` (from/to point pair + width) or `rect` (from/to corners, filled copper rectangle)
+- No zones or copper pours
 
 ## Getting started
 

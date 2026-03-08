@@ -107,6 +107,13 @@ function graphicsBBox(graphics: GraphicPrimitive[] | undefined): { minX: number;
   return { minX, maxX, minY, maxY };
 }
 
+/** Bbox of only the component body (rects + polygons), excluding wire stubs (lines). */
+function bodyBBox(graphics: GraphicPrimitive[] | undefined): { minX: number; maxX: number; minY: number; maxY: number } {
+  const body = (graphics ?? []).filter(g => g.type === 'rect' || g.type === 'polygon');
+  if (body.length === 0) return graphicsBBox(graphics);
+  return graphicsBBox(body);
+}
+
 // ── Graphics primitives ───────────────────────────────────────────────────────
 function renderGraphics(cx: number, cy: number, graphics: GraphicPrimitive[] | undefined): string {
   let out = '';
@@ -178,13 +185,17 @@ function renderComponent(
     }
   }
 
+  // Place pin labels just inside the component body edge (not at pin tips)
+  // so they don't overlap with power rail / ground symbols on the nets.
+  const body = bodyBBox(def.graphics);
   for (const pin of def.pins ?? []) {
     if (!pin.name || pin.name === '~') continue;
     const dx = pin.position?.dx ?? 0, dy = pin.position?.dy ?? 0;
     let tx: number, pAnchor: string;
-    if      (dx < 0) { tx = cx + dx + FS * 0.15; pAnchor = 'start'; }
-    else if (dx > 0) { tx = cx + dx - FS * 0.15; pAnchor = 'end';   }
-    else             { tx = cx + FS * 0.15;       pAnchor = 'start'; }
+    const inset = FS * 0.15;
+    if      (dx < 0) { tx = cx + (isFinite(body.minX) ? body.minX : dx) + inset; pAnchor = 'start'; }
+    else if (dx > 0) { tx = cx + (isFinite(body.maxX) ? body.maxX : dx) - inset; pAnchor = 'end';   }
+    else             { tx = cx + inset; pAnchor = 'start'; }
     out += txt('text', { x: tx, y: cy + dy, 'font-size': FS, 'font-family': 'monospace', fill: C.pin, 'text-anchor': pAnchor, 'dominant-baseline': 'middle' }, pin.name);
   }
 

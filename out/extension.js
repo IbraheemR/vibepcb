@@ -37,8 +37,9 @@ exports.activate = activate;
 exports.deactivate = deactivate;
 const vscode = __importStar(require("vscode"));
 const provider_1 = require("./provider");
+const pcbProvider_1 = require("./pcbProvider");
 function activate(context) {
-    context.subscriptions.push(vscode.window.registerCustomEditorProvider('vibepcb.schematicEditor', new provider_1.SchematicEditorProvider(), { webviewOptions: { retainContextWhenHidden: true } }));
+    context.subscriptions.push(vscode.window.registerCustomEditorProvider('vibepcb.schematicEditor', new provider_1.SchematicEditorProvider(), { webviewOptions: { retainContextWhenHidden: true } }), vscode.window.registerCustomEditorProvider('vibepcb.pcbEditor', new pcbProvider_1.PcbEditorProvider(), { webviewOptions: { retainContextWhenHidden: true } }));
 }
 function deactivate() { }
 //# sourceMappingURL=extension.js.map

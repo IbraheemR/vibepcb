@@ -109,6 +109,13 @@ function graphicsBBox(graphics) {
     }
     return { minX, maxX, minY, maxY };
 }
+/** Bbox of only the component body (rects + polygons), excluding wire stubs (lines). */
+function bodyBBox(graphics) {
+    const body = (graphics ?? []).filter(g => g.type === 'rect' || g.type === 'polygon');
+    if (body.length === 0)
+        return graphicsBBox(graphics);
+    return graphicsBBox(body);
+}
 // ── Graphics primitives ───────────────────────────────────────────────────────
 function renderGraphics(cx, cy, graphics) {
     let out = '';
@@ -176,21 +183,25 @@ function renderComponent(pos, def, comp) {
             out += txt('text', { x: lx, y: baseY - i * lineH, 'font-size': FS, 'font-family': 'monospace', 'font-weight': ln.bold ? 'bold' : 'normal', fill: ln.color, 'text-anchor': 'middle', 'dominant-baseline': 'auto' }, ln.text);
         }
     }
+    // Place pin labels just inside the component body edge (not at pin tips)
+    // so they don't overlap with power rail / ground symbols on the nets.
+    const body = bodyBBox(def.graphics);
     for (const pin of def.pins ?? []) {
         if (!pin.name || pin.name === '~')
             continue;
         const dx = pin.position?.dx ?? 0, dy = pin.position?.dy ?? 0;
         let tx, pAnchor;
+        const inset = FS * 0.15;
         if (dx < 0) {
-            tx = cx + dx + FS * 0.15;
+            tx = cx + (isFinite(body.minX) ? body.minX : dx) + inset;
             pAnchor = 'start';
         }
         else if (dx > 0) {
-            tx = cx + dx - FS * 0.15;
+            tx = cx + (isFinite(body.maxX) ? body.maxX : dx) - inset;
             pAnchor = 'end';
         }
         else {
-            tx = cx + FS * 0.15;
+            tx = cx + inset;
             pAnchor = 'start';
         }
         out += txt('text', { x: tx, y: cy + dy, 'font-size': FS, 'font-family': 'monospace', fill: C.pin, 'text-anchor': pAnchor, 'dominant-baseline': 'middle' }, pin.name);

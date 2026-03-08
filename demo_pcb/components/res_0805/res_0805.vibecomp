@@ -48,6 +48,13 @@
         "y2": 2
       }
     ],
+    "footprint_geometry": {
+      "outline": { "x": -1.0, "y": -1.5, "width": 2.0, "height": 3.0 },
+      "pads": [
+        { "pin": 1, "x": 0, "y": -1.0, "width": 1.25, "height": 1.0 },
+        { "pin": 2, "x": 0, "y":  1.0, "width": 1.25, "height": 1.0 }
+      ]
+    },
     "properties": {
       "value": {
         "value": null,

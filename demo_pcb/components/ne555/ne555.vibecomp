@@ -144,6 +144,19 @@
         "y2": 3
       }
     ],
+    "footprint_geometry": {
+      "outline": { "x": -5.08, "y": -5.08, "width": 10.16, "height": 10.16 },
+      "pads": [
+        { "pin": 1, "x": -3.81, "y":  3.81, "width": 1.6, "height": 1.0 },
+        { "pin": 2, "x": -3.81, "y":  1.27, "width": 1.6, "height": 1.0 },
+        { "pin": 3, "x": -3.81, "y": -1.27, "width": 1.6, "height": 1.0 },
+        { "pin": 4, "x": -3.81, "y": -3.81, "width": 1.6, "height": 1.0 },
+        { "pin": 5, "x":  3.81, "y": -3.81, "width": 1.6, "height": 1.0 },
+        { "pin": 6, "x":  3.81, "y": -1.27, "width": 1.6, "height": 1.0 },
+        { "pin": 7, "x":  3.81, "y":  1.27, "width": 1.6, "height": 1.0 },
+        { "pin": 8, "x":  3.81, "y":  3.81, "width": 1.6, "height": 1.0 }
+      ]
+    },
     "properties": {
       "value": {
         "value": "NE555",

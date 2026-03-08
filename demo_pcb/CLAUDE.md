@@ -57,6 +57,45 @@ vibepcb_export_schematic({ filePath: "/absolute/path/to/schematic.vibesch" })
 
 The tool returns the path to a temporary PNG file. Read that file to inspect the layout visually. Iterate on component positions until the schematic is clean and readable.
 
+### PCB layout
+
+**Do not create a PCB layout unless explicitly asked.** PCB layout is a separate task from schematic design. Only proceed with this section when prompted.
+
+After the schematic is complete, create a `.vibepcb` file in `pcb/` that references the schematic. The PCB layout workflow mirrors the schematic workflow — edit, export, inspect, iterate:
+
+1. **Set up the board** — choose `width_mm` and `height_mm` to fit your components with some margin. Origin is bottom-left.
+
+2. **Place components** — add a `placements` entry for every ref designator in the schematic. Start with a rough arrangement: ICs in the centre, decoupling caps near their associated IC, connectors at board edges. Use `rotation` (0/90/180/270) to align pads with trace directions.
+
+3. **Route traces** — add `traces` entries (from/to + width_mm) to connect pads according to the netlist. Use wider traces (0.4–0.5mm) for power nets (VCC, GND) and thinner traces (0.2–0.25mm) for signals. Add `rects` for bus bars or large copper areas.
+
+4. **Export and inspect** — use the `vibepcb_export_pcb` tool to export as PNG and visually check the result:
+
+```
+vibepcb_export_pcb({ filePath: "/absolute/path/to/pcb.vibepcb" })
+```
+
+5. **Iterate** — adjust placements and traces until:
+   - No traces overlap or cross (this is a single-layer board — wirebonding handles jumps, but minimise them)
+   - Pads connect cleanly to traces
+   - Components don't overlap each other
+   - Power traces are short and wide
+   - There is adequate clearance between copper features
+
+Keep iterating quickly — tweak positions, re-export, check. Don't over-think placement before seeing the render.
+
+### To export and inspect schematics and PCBs, use the following procedure strictly
+1. Identify a few issues
+2. choose the worst one
+3. make a change to source file
+4. re-render and check the output file with the mcp tool
+5. repeat for the next three issues
+6. continue until statified
+
+Pay attention to overlapping netlines/trace, shorts, messy wiring. Do not consider optimisation or routing strategy - prioritise making fast and quick edits and assessing the outcome.
+
+Add jumper wires if necessary. You might get to a oint where issues cannot be solved - if this is that case, then stop and tell me
+
 ### Review
 
 After each design session, change pace and act as a senior engineer doing a peer check. Try to find issues and discrepancies with the design. Go back around and fix them if necessary.
@@ -80,15 +119,16 @@ Try to avoid diagrams in your design logs, as they are unclear when rendered in 
 
 ## VibePCB File Format Reference
 
-VibePCB uses three JSON-based file formats:
+VibePCB uses four JSON-based file formats:
 
 | Extension | Purpose |
 |---|---|
 | `.vibesch` | Schematic — component placement and net connections |
-| `.vibecomp` | Component definition — symbol graphics, pins, and properties |
+| `.vibecomp` | Component definition — symbol graphics, pins, properties, and footprint |
 | `.vibeschtemplate` | Page template — paper size, border, and title block layout |
+| `.vibepcb` | PCB layout — board outline, component placement, and routing |
 
-All coordinates inside `.vibesch` and `.vibecomp` use a **100 mil grid** (1 unit = 2.54 mm). Template files use **millimetres**.
+All coordinates inside `.vibesch` and `.vibecomp` use a **100 mil grid** (1 unit = 2.54 mm). Template and PCB files use **millimetres**.
 
 ---
 
@@ -295,6 +335,152 @@ Each cell's `source` field pulls from `schematic.titleblock.<field>` or `auto.da
 
 ---
 
+## `.vibepcb` — PCB Layout
+
+The top-level key is `"pcb"`. All dimensions in **millimetres**. Origin is at the **bottom-left** corner of the board.
+
+```json
+{
+  "pcb": {
+    "schematic":  "<path to .vibesch>",
+    "titleblock": { ... },
+    "board":      { ... },
+    "placements": [ ... ],
+    "traces":     [ ... ],
+    "rects":      [ ... ]
+  }
+}
+```
+
+### Constraints
+
+- **Single layer only** — no vias, no layer switching. Use `jumpers` for connections that must cross other traces. Jumpers are placed by a wirebonding machine.
+- **Rectangular boards only** — defined by `width_mm` and `height_mm`.
+- **Footprints are defined in `.vibecomp` files** — placements only need `ref`, `position`, and `rotation`.
+- **No zones or copper pours.**
+
+---
+
+### `schematic`
+*string, required*
+
+Relative path from the `.vibepcb` file to the schematic it implements.
+
+```json
+"schematic": "../schematics/top_level.vibesch"
+```
+
+---
+
+### `board`
+*object, required*
+
+```json
+"board": {
+  "width_mm": 30,
+  "height_mm": 25
+}
+```
+
+Rectangular board. Origin (0, 0) is the **bottom-left** corner.
+
+---
+
+### `placements`
+*array, required*
+
+Places component footprints on the board. Footprint geometry comes from the `.vibecomp` file (resolved via the linked schematic's imports).
+
+```json
+"placements": [
+  { "ref": "U1", "position": { "x": 12.0, "y": 12.5 }, "rotation": 0 },
+  { "ref": "R1", "position": { "x": 22.0, "y": 8.0 },  "rotation": 90 }
+]
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `ref` | string | Reference designator — must match a component in the schematic |
+| `position` | `{x, y}` | Centre of footprint in mm from board origin (bottom-left) |
+| `rotation` | `0 \| 90 \| 180 \| 270` | Clockwise rotation in degrees (default `0`) |
+
+---
+
+### `traces`
+*array, optional*
+
+Point-to-point copper traces.
+
+```json
+"traces": [
+  {
+    "net": "VCC",
+    "width_mm": 0.4,
+    "from": { "x": 8.19, "y": 5.0 },
+    "to":   { "x": 15.81, "y": 5.0 }
+  }
+]
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `net` | string | Net name (must match a net in the schematic) |
+| `width_mm` | number | Trace width |
+| `from` | `{x, y}` | Start point in mm |
+| `to` | `{x, y}` | End point in mm |
+
+---
+
+### `rects`
+*array, optional*
+
+Filled copper rectangles (e.g. pads, bus bars, ground planes).
+
+```json
+"rects": [
+  {
+    "net": "GND",
+    "from": { "x": 0.5, "y": 0.5 },
+    "to":   { "x": 29.5, "y": 2.0 }
+  }
+]
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `net` | string | Net name |
+| `from` | `{x, y}` | One corner in mm |
+| `to` | `{x, y}` | Opposite corner in mm |
+
+---
+
+### `jumpers`
+*array, optional*
+
+Jumper wires placed by a wirebonding machine. These connect two points on the board where a single-layer trace cannot reach (e.g. crossing over another trace). Jumpers can be positioned at any angle. Each jumper is rendered as a grey dashed wire with circular landing pads at both endpoints.
+
+```json
+"jumpers": [
+  {
+    "net": "VCC",
+    "from": { "x": 5.0, "y": 10.0 },
+    "to":   { "x": 20.0, "y": 15.0 },
+    "pad_diameter_mm": 0.8
+  }
+]
+```
+
+| Field | Type | Description |
+|---|---|---|
+| `net` | string | Net name (must match a net in the schematic) |
+| `from` | `{x, y}` | Start point in mm (landing pad centre) |
+| `to` | `{x, y}` | End point in mm (landing pad centre) |
+| `pad_diameter_mm` | number | Landing pad diameter (default `0.8`) |
+
+Jumpers are drawn above the copper layer but below component overlays, so they visually sit on top of traces. Use jumpers sparingly — they add manufacturing cost. Prefer rearranging component placement and trace routing to minimise the number of jumpers needed.
+
+---
+
 ## Coordinate System Summary
 
 | Context | Unit | Origin | +x | +y |
@@ -302,3 +488,4 @@ Each cell's `source` field pulls from `schematic.titleblock.<field>` or `auto.da
 | `.vibecomp` pins & graphics | 100 mil (2.54 mm) | Component centre | Right | Up |
 | `.vibesch` component positions | 100 mil (2.54 mm) | Page centre | Right | Up |
 | `.vibeschtemplate` | mm | Top-left of page | Right | Down |
+| `.vibepcb` board layout | mm | Bottom-left of board | Right | Up |

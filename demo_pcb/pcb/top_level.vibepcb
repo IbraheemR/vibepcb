@@ -1,0 +1,80 @@
+{
+  "pcb": {
+    "schematic": "../schematics/top_level.vibesch",
+
+    "titleblock": {
+      "name": "NE555 1Hz LED Flasher",
+      "description": "NE555 astable oscillator driving a red LED",
+      "version": "0.1.0",
+      "author": "",
+      "company": ""
+    },
+
+    "board": {
+      "width_mm": 32,
+      "height_mm": 24
+    },
+
+    "placements": [
+      { "ref": "U1", "position": { "x": 15, "y": 12 }, "rotation": 0 },
+      { "ref": "R2", "position": { "x": 25, "y": 17 }, "rotation": 0 },
+      { "ref": "R3", "position": { "x": 25, "y": 13 }, "rotation": 0 },
+      { "ref": "C1", "position": { "x": 25, "y": 7 },  "rotation": 0 },
+      { "ref": "C2", "position": { "x": 19, "y": 5 },  "rotation": 0 },
+      { "ref": "R1", "position": { "x": 6,  "y": 14 }, "rotation": 0 },
+      { "ref": "D1", "position": { "x": 4,  "y": 8 },  "rotation": 180 }
+    ],
+
+    "traces": [
+      { "net": "VCC", "width_mm": 0.4, "from": { "x": 18.81, "y": 15.81 }, "to": { "x": 25, "y": 15.81 } },
+      { "net": "VCC", "width_mm": 0.4, "from": { "x": 25, "y": 15.81 }, "to": { "x": 25, "y": 16 } },
+
+      { "net": "VCC", "width_mm": 0.4, "from": { "x": 11.19, "y": 8.19 }, "to": { "x": 9, "y": 8.19 } },
+      { "net": "VCC", "width_mm": 0.4, "from": { "x": 9, "y": 8.19 }, "to": { "x": 9, "y": 17.5 } },
+      { "net": "VCC", "width_mm": 0.4, "from": { "x": 9, "y": 17.5 }, "to": { "x": 18.81, "y": 17.5 } },
+      { "net": "VCC", "width_mm": 0.4, "from": { "x": 18.81, "y": 17.5 }, "to": { "x": 18.81, "y": 15.81 } },
+
+      { "net": "node_dis", "width_mm": 0.25, "from": { "x": 18.81, "y": 13.27 }, "to": { "x": 27, "y": 13.27 } },
+      { "net": "node_dis", "width_mm": 0.25, "from": { "x": 27, "y": 13.27 }, "to": { "x": 27, "y": 12 } },
+      { "net": "node_dis", "width_mm": 0.25, "from": { "x": 27, "y": 12 }, "to": { "x": 25, "y": 12 } },
+      { "net": "node_dis", "width_mm": 0.25, "from": { "x": 27, "y": 13.27 }, "to": { "x": 27, "y": 18 } },
+      { "net": "node_dis", "width_mm": 0.25, "from": { "x": 27, "y": 18 }, "to": { "x": 25, "y": 18 } },
+
+      { "net": "node_timing", "width_mm": 0.25, "from": { "x": 11.19, "y": 13.27 }, "to": { "x": 11.19, "y": 12 } },
+      { "net": "node_timing", "width_mm": 0.25, "from": { "x": 11.19, "y": 12 }, "to": { "x": 18.81, "y": 12 } },
+      { "net": "node_timing", "width_mm": 0.25, "from": { "x": 18.81, "y": 12 }, "to": { "x": 18.81, "y": 10.73 } },
+      { "net": "node_timing", "width_mm": 0.25, "from": { "x": 18.81, "y": 10.73 }, "to": { "x": 23, "y": 10.73 } },
+      { "net": "node_timing", "width_mm": 0.25, "from": { "x": 23, "y": 10.73 }, "to": { "x": 23, "y": 14 } },
+      { "net": "node_timing", "width_mm": 0.25, "from": { "x": 23, "y": 14 }, "to": { "x": 25, "y": 14 } },
+      { "net": "node_timing", "width_mm": 0.25, "from": { "x": 23, "y": 10.73 }, "to": { "x": 23, "y": 6 } },
+      { "net": "node_timing", "width_mm": 0.25, "from": { "x": 23, "y": 6 }, "to": { "x": 25, "y": 6 } },
+
+      { "net": "node_ctrl", "width_mm": 0.25, "from": { "x": 18.81, "y": 8.19 }, "to": { "x": 17, "y": 8.19 } },
+      { "net": "node_ctrl", "width_mm": 0.25, "from": { "x": 17, "y": 8.19 }, "to": { "x": 17, "y": 4 } },
+      { "net": "node_ctrl", "width_mm": 0.25, "from": { "x": 17, "y": 4 }, "to": { "x": 19, "y": 4 } },
+
+      { "net": "node_out", "width_mm": 0.25, "from": { "x": 11.19, "y": 10.73 }, "to": { "x": 6, "y": 10.73 } },
+      { "net": "node_out", "width_mm": 0.25, "from": { "x": 6, "y": 10.73 }, "to": { "x": 6, "y": 13 } },
+
+      { "net": "node_A", "width_mm": 0.25, "from": { "x": 6, "y": 15 }, "to": { "x": 4, "y": 15 } },
+      { "net": "node_A", "width_mm": 0.25, "from": { "x": 4, "y": 15 }, "to": { "x": 4, "y": 9 } },
+
+      { "net": "GND", "width_mm": 0.4, "from": { "x": 11.19, "y": 15.81 }, "to": { "x": 11.19, "y": 19 } },
+      { "net": "GND", "width_mm": 0.4, "from": { "x": 11.19, "y": 19 }, "to": { "x": 2, "y": 19 } },
+      { "net": "GND", "width_mm": 0.4, "from": { "x": 2, "y": 19 }, "to": { "x": 2, "y": 2 } },
+      { "net": "GND", "width_mm": 0.4, "from": { "x": 2, "y": 2 }, "to": { "x": 25, "y": 2 } },
+
+      { "net": "GND", "width_mm": 0.4, "from": { "x": 25, "y": 8 }, "to": { "x": 25, "y": 2 } },
+      { "net": "GND", "width_mm": 0.4, "from": { "x": 19, "y": 6 }, "to": { "x": 21, "y": 6 } },
+      { "net": "GND", "width_mm": 0.4, "from": { "x": 21, "y": 6 }, "to": { "x": 21, "y": 2 } },
+      { "net": "GND", "width_mm": 0.4, "from": { "x": 4, "y": 7 }, "to": { "x": 4, "y": 2 } }
+    ],
+
+    "rects": [],
+
+    "jumpers": [
+      { "net": "VCC", "from": { "x": 9, "y": 8.19 }, "to": { "x": 11.19, "y": 8.19 } },
+      { "net": "GND", "from": { "x": 2, "y": 2 }, "to": { "x": 4, "y": 2 } }
+    ]
+  }
+}
