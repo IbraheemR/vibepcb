@@ -1,0 +1,46 @@
+{
+  "component": {
+    "name": "2-Pin Power Connector",
+    "description": "Phoenix Contact MKDS 1713898, 2-pos 10.16mm pitch screw terminal, 600V/76A rated",
+    "category": "connector",
+    "symbol": "connector_2pin",
+    "footprint": "TerminalBlock_Phoenix:TerminalBlock_MKDS_1713898_1x02_P10.16mm",
+    "pins": [
+      {
+        "number": 1,
+        "name": "1",
+        "type": "passive",
+        "position": { "dx": 3, "dy": 1 }
+      },
+      {
+        "number": 2,
+        "name": "2",
+        "type": "passive",
+        "position": { "dx": 3, "dy": -1 }
+      }
+    ],
+    "graphics": [
+      { "type": "rect", "x": -1, "y": -2, "width": 2, "height": 4 },
+      { "type": "line", "x1": 1, "y1": 1, "x2": 3, "y2": 1 },
+      { "type": "line", "x1": 1, "y1": -1, "x2": 3, "y2": -1 }
+    ],
+    "properties": {
+      "value": {
+        "value": "MKDS-2",
+        "display": "shown"
+      },
+      "package": {
+        "value": "10.16mm Screw Terminal",
+        "display": "shown"
+      },
+      "voltage_max_V": {
+        "value": 600,
+        "display": "hidden"
+      },
+      "current_max_A": {
+        "value": 76,
+        "display": "hidden"
+      }
+    }
+  }
+}

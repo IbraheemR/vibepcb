@@ -1,0 +1,53 @@
+{
+  "component": {
+    "name": "3-Pin Power Connector",
+    "description": "Phoenix Contact MKDS 1713908, 3-pos 10.16mm pitch screw terminal, 600V/76A rated",
+    "category": "connector",
+    "symbol": "connector_3pin",
+    "footprint": "TerminalBlock_Phoenix:TerminalBlock_MKDS_1713908_1x03_P10.16mm",
+    "pins": [
+      {
+        "number": 1,
+        "name": "1",
+        "type": "passive",
+        "position": { "dx": -3, "dy": 2 }
+      },
+      {
+        "number": 2,
+        "name": "2",
+        "type": "passive",
+        "position": { "dx": -3, "dy": 0 }
+      },
+      {
+        "number": 3,
+        "name": "3",
+        "type": "passive",
+        "position": { "dx": -3, "dy": -2 }
+      }
+    ],
+    "graphics": [
+      { "type": "rect", "x": -1, "y": -3, "width": 2, "height": 6 },
+      { "type": "line", "x1": -3, "y1": 2, "x2": -1, "y2": 2 },
+      { "type": "line", "x1": -3, "y1": 0, "x2": -1, "y2": 0 },
+      { "type": "line", "x1": -3, "y1": -2, "x2": -1, "y2": -2 }
+    ],
+    "properties": {
+      "value": {
+        "value": "MKDS-3",
+        "display": "shown"
+      },
+      "package": {
+        "value": "10.16mm Screw Terminal",
+        "display": "shown"
+      },
+      "voltage_max_V": {
+        "value": 600,
+        "display": "hidden"
+      },
+      "current_max_A": {
+        "value": 76,
+        "display": "hidden"
+      }
+    }
+  }
+}

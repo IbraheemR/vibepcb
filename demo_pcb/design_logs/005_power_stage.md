@@ -97,6 +97,15 @@ Each IGBT gate is driven through a 10 Ohm series resistor. The gate drive signal
 
 Two 100uF/900V polypropylene film capacitors are connected in parallel between DC+ and DC-. These provide the bulk energy storage and ripple current handling for the switching stage. In the PCB layout, these should be placed as close as physically possible to the IGBT half-bridges to minimise the parasitic inductance of the commutation loop.
 
+### Connectors
+
+Two power connectors provide the external interface:
+
+- J1: 2-pin Phoenix Contact MKDS screw terminal (10.16mm pitch, 600V/76A rated) for DC bus input. Pin 1 = DC+, Pin 2 = DC-.
+- J2: 3-pin Phoenix Contact MKDS screw terminal (10.16mm pitch, 600V/76A rated) for three-phase output. Pin 1 = U, Pin 2 = V, Pin 3 = W.
+
+The MKDS series was selected for its high current and voltage ratings appropriate for the 50A/600V operating point, with screw terminals providing reliable high-current connections.
+
 ### Temperature Monitoring
 
 Three NTC thermistors are mounted on or near the heatsink, one per half-bridge leg. Each thermistor has one terminal connected to a TEMP_x net label (for ADC readout on the controller) and the other to GND. The controller board provides the pullup resistor and ADC interface.
